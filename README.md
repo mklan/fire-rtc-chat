@@ -28,10 +28,25 @@ serverless webRTC chat using firebase's realtime database as signaling broker
 
 > __Warning!__ After the decryption the other party is able to retrieve your firebase configuration. So keep only chatting to people you trust or non-techies.
 
+## Develop
+```
+npm install
+npm start
+```
+
+http://localhost:1234
+
+
+## Deploy
+
+```bash
+npm run build
+```
+
 ## TODO
 
 - [ ] nicer CSS / layout
-- [ ] hit enter to send message on desktop
+- [x] hit enter to send message on desktop
 - [ ] instructions on main screen
 - [ ] form validation
 - [ ] fire-rtc as a single lib/project on npm

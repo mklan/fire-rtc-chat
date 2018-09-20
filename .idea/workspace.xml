@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="004380f9-e945-45a8-b550-53d610e4b46f" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/containers/Chat/Chat.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Chat/Chat.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/src.e85685b9.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/src.257a8db7.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/src.257a8db7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/src.257a8db7.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/src.777a25d4.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/src.8bb8743f.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/src.20e238f7.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,7 +37,7 @@
           <entry key="html" value="5" />
           <entry key="js" value="7157" />
           <entry key="json" value="18" />
-          <entry key="md" value="1712" />
+          <entry key="md" value="1818" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -39,7 +46,7 @@
           <entry key="HTML" value="5" />
           <entry key="JSON" value="34" />
           <entry key="JavaScript" value="7157" />
-          <entry key="Markdown" value="1712" />
+          <entry key="Markdown" value="1818" />
           <entry key="PLAIN_TEXT" value="14" />
         </counts>
       </usages-collector>
@@ -52,7 +59,7 @@
           <entry key="html" value="2" />
           <entry key="js" value="19" />
           <entry key="json" value="2" />
-          <entry key="md" value="1" />
+          <entry key="md" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -61,7 +68,7 @@
           <entry key="HTML" value="2" />
           <entry key="JSON" value="3" />
           <entry key="JavaScript" value="19" />
-          <entry key="Markdown" value="1" />
+          <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -175,7 +182,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/containers/Chat/Chat.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="168">
@@ -183,6 +190,20 @@
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+                <state split_layout="SPLIT">
+                  <first_editor relative-caret-position="387">
+                    <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+                  </first_editor>
+                  <second_editor>
+                    <js_state />
+                  </second_editor>
                 </state>
               </provider>
             </entry>
@@ -222,6 +243,7 @@
       <find>onConnect</find>
       <find>bottom</find>
       <find>connected</find>
+      <find>message</find>
     </findStrings>
     <replaceStrings>
       <replace>className=</replace>
@@ -264,8 +286,8 @@
         <option value="$PROJECT_DIR$/src/containers/Chat/styles.css" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/containers/Chat/Chat.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -386,7 +408,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52233000" />
+    <option name="totallyTimeSpent" value="52437000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="8" y="15" width="1904" height="1057" extended-state="0" />
@@ -616,7 +638,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="387">
-            <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+            <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           </first_editor>
           <second_editor>
             <js_state />
