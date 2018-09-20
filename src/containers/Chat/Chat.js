@@ -10,6 +10,7 @@ const state = {
 
 const actions = {
   send: (onSend) => (state, actions) => {
+    if(!state.input) return;
     onSend(state.input);
     actions.addMessage({ user: 'me', msg: state.input });
     actions.clearInput();
@@ -27,10 +28,12 @@ const Component = ({ onSend = () => {} }) => (state, actions) =>  (
                                                 key={i}><span className="user">{message.user}:</span> {message.msg}</div>)
       }
     </div>
-    <div className="bottomBar">
-      <input className="messageInput" value={state.input} onchange={actions.setInput}/>
-      <button onclick={() => actions.send(onSend)}>send</button>
-    </div>
+      <form onsubmit={(e) => { e.preventDefault(); actions.send(onSend)}}>
+        <div className="bottomBar">
+          <input className="messageInput" value={state.input} onchange={actions.setInput}/>
+          <button type="submit">send</button>
+        </div>
+      </form>
   </div>
 );
 
