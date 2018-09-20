@@ -23,8 +23,8 @@ const Component = ({ onSend = () => {} }) => (state, actions) =>  (
   <div className="chat">
     <div className="messages">
       {
-        state.messages.map((message, i) => <div className={`message ${message.user === 'me' ? 'ownMessage' : ''}`}
-                                                key={i}>{message.user}: {message.msg}</div>)
+        state.messages.map((message, i) => <div className={`chat-message ${message.user === 'me' ? 'own-chat-message' : ''}`}
+                                                key={i}><span className="user">{message.user}:</span> {message.msg}</div>)
       }
     </div>
     <div className="bottomBar">

@@ -1,28 +1,27 @@
 import firebase from "firebase";
+import uuidv4 from 'uuid/v4';
 import { h, app } from 'hyperapp';
 
 import 'bulma/css/bulma.css';
+import './styles.css';
 
-import SettingsContainer from './containers/Settings/Settings';
-import ChatContainer from './containers/Chat/Chat';
-import DecryptionFormContainer from './containers/DecryptionForm/DecryptionForm';
-
-import QR from './components/QR';
 import { encrypt } from './services/encryption';
-
-const Settings = SettingsContainer.Component;
-const Chat = ChatContainer.Component;
-const DecryptionForm = DecryptionFormContainer.Component;
-// @jsx h
-
-import uuidv4 from 'uuid/v4';
 import { createFireRTC } from './fireRTC';
 
-import './styles.css';
+import QR from './components/QR';
 import Modal from "./containers/Modal/Modal";
 import Button from "./components/Button/Button";
 import SingleInputForm from "./components/SingleInputForm/SingleInputForm";
 import ClipboardButton from "./containers/ClipboardButton/ClipboardButton";
+
+//container
+import SettingsContainer from './containers/Settings/Settings';
+import ChatContainer from './containers/Chat/Chat';
+import DecryptionFormContainer from './containers/DecryptionForm/DecryptionForm';
+
+const Settings = SettingsContainer.Component;
+const Chat = ChatContainer.Component;
+const DecryptionForm = DecryptionFormContainer.Component;
 
 const URLparams = new URLSearchParams(location.search);
 let fireRTC;
@@ -45,7 +44,6 @@ const actions = {
     fireRTC = createFireRTC({
       id,
       initiator: state.isInitiator,
-      debug: true,
       onError: error => actions.setState({ error }),
       onConnect: () => actions.setState({ connected: true }),
       onSignal: actions.join,
@@ -72,7 +70,7 @@ const actions = {
   ...ChatContainer.actions,
 };
 
-const view = (state, actions) => (
+const View = (state, actions) => (
   <div className="view">
     <div className="content">
       { state.connected ? <Chat onSend={fireRTC.send}/> : <MainView /> }
@@ -95,7 +93,7 @@ const MainView = () => (state, actions) =>  (
             FireRTC-Chat
           </h1>
           <p className="subtitle">
-            Serverless WebRTC Chat using Firebase's realtime database as signaling agent
+            Serverless WebRTC Chat using Firebase's realtime database as signaling broker
           </p>
         </div>
       </div>
@@ -116,4 +114,4 @@ const MainView = () => (state, actions) =>  (
   </div>
 );
 
-app(state, actions, view, document.getElementById('app'));
+app(state, actions, View, document.getElementById('app'));

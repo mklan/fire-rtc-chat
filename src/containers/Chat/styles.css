@@ -2,8 +2,8 @@
 .chat {
     display: flex;
     flex-direction: column;
-    margin: 0.7em;
-    width: 50%;
+    height: 100%;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 800px) {
@@ -21,7 +21,8 @@
     padding: 1em;
 }
 
-.message {
+.chat-message {
+    overflow-wrap: break-word;
     width: 60%;
     margin: 6px 0;
     background-color: #eaeaea;
@@ -30,12 +31,21 @@
     padding: 1em;
 }
 
-.ownMessage {
-    margin-left: calc(40% - 2em);
+.own-chat-message {
+    margin-left: 40%;
     background-color: #c8ffed;
     border: 1px solid #a4ffe1;
 }
 
+.bottomBar {
+    display: flex;
+    height: 40px;
+}
+
 .messageInput {
     flex: 1;
+}
+
+.user {
+    font-weight: 900;
 }

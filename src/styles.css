@@ -23,14 +23,6 @@ body {
     align-items: center;
 }
 
-
-.bottomBar {
-    display: flex;
-    height: 40px;
-    padding: 0 1em;
-}
-
-
 .pull-top-right {
     position: absolute;
     top: 0;
