@@ -1,0 +1,41 @@
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    margin: 0.7em;
+    width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    .chat {
+        width: 100%;
+    }
+}
+
+.messages {
+    flex: 1;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1em;
+}
+
+.message {
+    width: 60%;
+    margin: 6px 0;
+    background-color: #eaeaea;
+    border-radius: 3px;
+    border: 1px solid #d0d0d0;
+    padding: 1em;
+}
+
+.ownMessage {
+    margin-left: calc(40% - 2em);
+    background-color: #c8ffed;
+    border: 1px solid #a4ffe1;
+}
+
+.messageInput {
+    flex: 1;
+}
