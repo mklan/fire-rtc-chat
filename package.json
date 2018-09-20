@@ -1,8 +1,7 @@
 {
-  "name": "fs-webrtc",
+  "name": "fire-rtc-chat",
   "version": "0.1.0",
-  "description": "serverless webrtc using firestone's realtime db for signaling",
-  "main": "index.js",
+  "description": "A serverless webRTC chat, using firebase's database as the sdp-broker",
   "scripts": {
     "prebuild": "rm -rf docs",
     "start": "parcel src/index.html --out-dir docs",
