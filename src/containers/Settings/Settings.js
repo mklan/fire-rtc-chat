@@ -13,7 +13,6 @@ const state = {
 
 const actions = {
   loadSettings: () => (state, actions) => {
-    console.log(localStorage.settings);
     if(localStorage.settings) {
       return ({ settings: JSON.parse(localStorage.settings)})
     }
@@ -33,15 +32,15 @@ const actions = {
 
 const fields = [
   {
-    label: 'api key',
+    label: 'firebase api key',
     name: 'apiKey'
   },
   {
-    label: 'database URL',
+    label: 'firebase database URL',
     name: 'databaseURL'
   },
   {
-    label: 'project Id',
+    label: 'firebase project Id',
     name: 'projectId'
   },
   {

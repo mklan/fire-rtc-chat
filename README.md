@@ -44,7 +44,9 @@ npm run build
 - [ ] nicer CSS / layout
 - [x] hit enter to send message on desktop
 - [ ] instructions on main screen
-- [ ] form validation
+- [x] form validation
+- [ ] loading indicator
+- [ ] form helpers on wrong validation
 - [ ] fire-rtc as a single lib/project on npm
 - [ ] video chat
 - [ ] file transfer
