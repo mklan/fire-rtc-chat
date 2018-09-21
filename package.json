@@ -22,6 +22,7 @@
     "bulma": "^0.7.1",
     "clipboard": "^2.0.1",
     "crypto-js": "^3.1.9-1",
+    "fire-rtc": "^1.0.2",
     "firebase": "^5.4.2",
     "hyperapp": "^1.2.8",
     "micromodal": "^0.3.2",

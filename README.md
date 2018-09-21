@@ -47,6 +47,6 @@ npm run build
 - [x] form validation
 - [ ] loading indicator
 - [ ] form helpers on wrong validation
-- [ ] fire-rtc as a single lib/project on npm
+- [x] fire-rtc as a single lib/project on npm
 - [ ] video chat
 - [ ] file transfer

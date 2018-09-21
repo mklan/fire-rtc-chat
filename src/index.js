@@ -6,7 +6,7 @@ import 'bulma/css/bulma.css';
 import './styles.css';
 
 import { encrypt } from './services/encryption';
-import { createFireRTC } from './fireRTC';
+import createFireRTC from 'fire-rtc';
 
 import QR from './components/QR';
 import Modal from "./containers/Modal/Modal";
@@ -44,6 +44,7 @@ const actions = {
 
     fireRTC = createFireRTC({
       id,
+      firebase,
       firebaseNameSpace: 'fireRTCChat',
       initiator: state.isInitiator,
       onError: error => actions.setState({ error }),
