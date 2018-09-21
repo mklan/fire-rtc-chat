@@ -38,6 +38,7 @@ const state = {
 const actions = {
   setState: newState => () => newState,
   initializeFireRTC: ({ id, fireBaseConfig}) => async (state, actions) => {
+    actions.setState({ loading: true });
     if(firebase.apps['fireRTCChat']) await firebase.app('fireRTCChat').delete();
     await firebase.initializeApp(fireBaseConfig, 'fireRTCChat');
 
@@ -46,7 +47,7 @@ const actions = {
       firebaseNameSpace: 'fireRTCChat',
       initiator: state.isInitiator,
       onError: error => actions.setState({ error }),
-      onConnect: () => actions.setState({ connected: true }),
+      onConnect: () => actions.setState({ connected: true, loading: false }),
       onSignal: actions.join,
       onData: msg => actions.addMessage({user: state.partnerNickname || 'Bob', msg: msg.toString()}),
     });
@@ -74,6 +75,7 @@ const actions = {
 const View = (state, actions) => (
   <div className="view">
     <div className="content">
+      <h1>{ state.loading ? 'LOADING' : '' }</h1>
       { state.connected ? <Chat onSend={fireRTC.send}/> : <MainView /> }
     </div>
   </div>
@@ -108,7 +110,7 @@ const MainView = () => (state, actions) =>  (
       </div>
       }
     </div> : <div>
-      enter passphrase to chat with {state.partnerNickname}
+      enter the passphrase to chat with {state.partnerNickname}
       <DecryptionForm buttonLabel={'Enter chat'} encryption={URLparams.get('code')} onDecrypt={actions.initializeFireRTC}/>
     </div>
       }
