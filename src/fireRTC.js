@@ -2,7 +2,18 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import Peer from 'simple-peer';
 
-export function createFireRTC({ initiator, appId, peerConfig = {}, debug, id, onError = () => {}, onConnect = () => {}, onData = () => {}, onSignal = () => {}}) {
+export function createFireRTC({
+                                initiator, // whether you initiate the connection
+                                firebaseNameSpace, // optional firebase namespace
+                                peerConfig = {}, // further simple-peer configurations
+                                debug, // log debug outputs
+                                id, // peer id to identify the webRTC connection
+                                onError = () => {}, // error callback
+                                onConnect = () => {}, // callback when connected
+                                onData = () => {}, // callback when data was received
+                                onSignal = () => {} // callback when own signal is ready (from this point on you can join
+}) {
+
     let ownSignal;
     const p = new Peer({ ...peerConfig, initiator, trickle: false });
 
@@ -17,7 +28,7 @@ export function createFireRTC({ initiator, appId, peerConfig = {}, debug, id, on
 
     p.on('connect', function () {
         debug && console.log('CONNECTED');
-        firebase.app(appId).database().ref(`sdp/${id}`).remove();
+        firebase.app(firebaseNameSpace).database().ref(`sdp/${id}`).remove();
         onConnect(p);
     });
 
@@ -30,15 +41,16 @@ export function createFireRTC({ initiator, appId, peerConfig = {}, debug, id, on
 
     function listen() {
         const relevantType = initiator ? 'answer' : 'offer';
-        const sdpRef = firebase.app(appId).database().ref(`sdp/${id}`);
-        sdpRef.on('value', (s) => {
+        const sdpRef = firebase.app(firebaseNameSpace).database().ref(`sdp/${id}`);
+        sdpRef.on('value', s => {
             if(s.val() && s.val()[relevantType]) p.signal(s.val()[relevantType]);
         });
     }
 
     function join() {
+        if(!ownSignal) throw new Error('join failed, due to missing signal');
         if(initiator) listen();
-        firebase.app(appId).database().ref(`sdp/${id}/${ownSignal.type}`).set(ownSignal);
+        firebase.app(firebaseNameSpace).database().ref(`sdp/${id}/${ownSignal.type}`).set(ownSignal);
     }
 
     function send(data) {

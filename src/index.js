@@ -43,7 +43,7 @@ const actions = {
 
     fireRTC = createFireRTC({
       id,
-      appId: 'fireRTCChat',
+      firebaseNameSpace: 'fireRTCChat',
       initiator: state.isInitiator,
       onError: error => actions.setState({ error }),
       onConnect: () => actions.setState({ connected: true }),
