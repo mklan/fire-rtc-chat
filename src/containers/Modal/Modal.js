@@ -6,12 +6,8 @@ import Button from '../../components/Button/Button';
 import './styles.css';
 
 const init = (config, initialOpen, id) => {
-  console.log('sodh', config, initialOpen, id);
   MicroModal.init(config);
-  if(initialOpen) {
-    console.log('open');
-    MicroModal.show(id);
-  }
+  initialOpen && MicroModal.show(id);
 };
 
 const Modal = ({ id='modal-1', disableOk, initialOpen, title, config={}, okLabel='Ok', closeLabel='Close', showOk, showCancel=true, onOk=() => {}, onCancel=() => {}  }, children) =>

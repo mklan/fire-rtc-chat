@@ -8,11 +8,12 @@ const state = {
   settingsErrors: {
   },
   settingsFormValid: false,
-  settingsInStorage: localStorage.settings,
+  settingsInStorage: !!localStorage.settings,
 };
 
 const actions = {
   loadSettings: () => (state, actions) => {
+    console.log(localStorage.settings);
     if(localStorage.settings) {
       return ({ settings: JSON.parse(localStorage.settings)})
     }
