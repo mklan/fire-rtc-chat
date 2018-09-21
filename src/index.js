@@ -48,11 +48,9 @@ const actions = {
       initiator: state.isInitiator,
       onError: error => actions.setState({ error }),
       onConnect: () => actions.setState({ connected: true, loading: false }),
-      onSignal: actions.join,
       onData: msg => actions.addMessage({user: state.partnerNickname || 'Bob', msg: msg.toString()}),
     });
   },
-  join: () => () => fireRTC.join(),
   createChat: () => async (state, actions) => {
     const { apiKey, databaseURL, projectId, password, nickname } = state.settings;
     const fireRTCconfig = {

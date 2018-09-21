@@ -11,7 +11,6 @@ export function createFireRTC({
                                 onError = () => {}, // error callback
                                 onConnect = () => {}, // callback when connected
                                 onData = () => {}, // callback when data was received
-                                onSignal = () => {} // callback when own signal is ready (from this point on you can join
 }) {
 
     let ownSignal;
@@ -23,7 +22,7 @@ export function createFireRTC({
         if (ownSignal) return;
         debug && console.log('SIGNAL', signal);
         ownSignal = signal;
-        onSignal(signal);
+        join();
     });
 
     p.on('connect', function () {
@@ -62,7 +61,6 @@ export function createFireRTC({
     }
 
     return {
-        join,
         send
     };
 }
