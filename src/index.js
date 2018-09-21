@@ -38,11 +38,12 @@ const state = {
 const actions = {
   setState: newState => () => newState,
   initializeFireRTC: ({ id, fireBaseConfig}) => async (state, actions) => {
-    if(firebase.apps.length) await firebase.app().delete();
-    await firebase.initializeApp(fireBaseConfig);
+    if(firebase.apps['fireRTCChat']) await firebase.app('fireRTCChat').delete();
+    await firebase.initializeApp(fireBaseConfig, 'fireRTCChat');
 
     fireRTC = createFireRTC({
       id,
+      appId: 'fireRTCChat',
       initiator: state.isInitiator,
       onError: error => actions.setState({ error }),
       onConnect: () => actions.setState({ connected: true }),

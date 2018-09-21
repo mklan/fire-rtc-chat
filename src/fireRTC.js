@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 import Peer from 'simple-peer';
 
-export function createFireRTC({ initiator, peerConfig = {}, debug, id, onError = () => {}, onConnect = () => {}, onData = () => {}, onSignal = () => {}}) {
+export function createFireRTC({ initiator, appId, peerConfig = {}, debug, id, onError = () => {}, onConnect = () => {}, onData = () => {}, onSignal = () => {}}) {
     let ownSignal;
     const p = new Peer({ ...peerConfig, initiator, trickle: false });
 
@@ -17,10 +17,10 @@ export function createFireRTC({ initiator, peerConfig = {}, debug, id, onError =
 
     p.on('connect', function () {
         debug && console.log('CONNECTED');
-        firebase.database().ref(`sdp/${id}`).remove();
+        firebase.app(appId).database().ref(`sdp/${id}`).remove();
         onConnect(p);
     });
-    
+
     p.on('data', function (data) {
         debug && console.log('data: ' + data);
         onData(data);
@@ -30,7 +30,7 @@ export function createFireRTC({ initiator, peerConfig = {}, debug, id, onError =
 
     function listen() {
         const relevantType = initiator ? 'answer' : 'offer';
-        const sdpRef = firebase.database().ref(`sdp/${id}`);
+        const sdpRef = firebase.app(appId).database().ref(`sdp/${id}`);
         sdpRef.on('value', (s) => {
             if(s.val() && s.val()[relevantType]) p.signal(s.val()[relevantType]);
         });
@@ -38,8 +38,7 @@ export function createFireRTC({ initiator, peerConfig = {}, debug, id, onError =
 
     function join() {
         if(initiator) listen();
-        console.log('set signal', ownSignal);
-        firebase.database().ref(`sdp/${id}/${ownSignal.type}`).set(ownSignal);
+        firebase.app(appId).database().ref(`sdp/${id}/${ownSignal.type}`).set(ownSignal);
     }
 
     function send(data) {
@@ -49,7 +48,7 @@ export function createFireRTC({ initiator, peerConfig = {}, debug, id, onError =
           onError(e);
         }
     }
-    
+
     return {
         join,
         send
