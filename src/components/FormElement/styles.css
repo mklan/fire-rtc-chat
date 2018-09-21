@@ -1,0 +1,7 @@
+.row {
+    display: flex;
+}
+
+.error-msg {
+    margin-left: 8px;
+}

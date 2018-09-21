@@ -80,7 +80,7 @@ const View = (state, actions) => (
 
 const MainView = () => (state, actions) =>  (
   <div oncreate={actions.loadSettings} className="main-view">
-    <Modal config={{ onShow: actions.loadSettings }} id={'settings-modal'} title={'Settings'} onOk={actions.handleSaveSettings} showOk={true} okLabel={'Save'} closeLabel={'Cancel'}>
+    <Modal initialOpen={!Object.keys(state.settings).length} config={{ onShow: actions.loadSettings }} id={'settings-modal'} title={'Settings'} disableOk={!state.settingsFormValid} onOk={actions.handleSaveSettings} showCancel={!!state.settingsInStorage} showOk={true} okLabel={'Save'} closeLabel={'Cancel'}>
       <Settings />
     </Modal>
     <div className="pull-top-right">

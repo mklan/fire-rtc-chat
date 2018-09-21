@@ -1,9 +1,9 @@
 import { h, app } from 'hyperapp';
 
-import { Input } from "../FormElements";
+import { Input } from "../FormElement/FormElements";
 import Button from '../Button/Button';
 
-const SingleInputForm = ({ disabled, onclick=() => {}, buttonLabel='Send', name, type, value,onchange=()=>{}, placeholder  }) => (state, actions) =>  (
+const SingleInputForm = ({ disabled, onclick=() => {}, buttonLabel='Send', name, type, value,onchange=()=>{}, placeholder  }) =>  (
   <div className="columns">
     <div className="column">
       <Input placeholder={placeholder} name={name} type={type} value={value} onchange={onchange} />

@@ -1,10 +1,14 @@
 import { h, app } from 'hyperapp';
-import { Field } from "../../components/FormElements";
+import { Field } from "../../components/FormElement/FormElements";
 
 import './styles.css';
 
 const state = {
-  settings: {}
+  settings: {},
+  settingsErrors: {
+  },
+  settingsFormValid: false,
+  settingsInStorage: localStorage.settings,
 };
 
 const actions = {
@@ -14,12 +18,16 @@ const actions = {
     }
   },
   setSetting: (setting) => (state, actions) => {
-    return ({ settings: { ...state.settings, ...setting }})
+
+    const  { apiKey, databaseURL, projectId, nickname, password } = state.settings;
+
+    return ({ settings: { ...state.settings, ...setting }, settingsFormValid: apiKey && databaseURL && projectId && nickname && password})
   },
   handleSaveSettings: (callback) => ({ settings }, actions) => {
     localStorage.settings = JSON.stringify(settings);
     callback && callback(settings);
-  }
+    return ({ settingsInStorage: true });
+  },
 };
 
 const fields = [
@@ -52,6 +60,7 @@ const Component = () => (state, actions) =>  (
     {
       fields.map(field => (
         <Field
+          error={state.settingsErrors[field.name]}
           className='settings-field'
           {...field}
           value={state.settings[field.name]}

@@ -1,5 +1,5 @@
 import { h, app } from 'hyperapp';
-import { Field } from "../../components/FormElements";
+import { Field } from "../../components/FormElement/FormElements";
 
 import './styles.css';
 
