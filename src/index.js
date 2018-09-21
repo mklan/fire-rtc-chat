@@ -83,7 +83,7 @@ const MainView = () => (state, actions) =>  (
     <Modal initialOpen={!Object.keys(state.settings).length} config={{ onShow: actions.loadSettings }} id={'settings-modal'} title={'Settings'} disableOk={!state.settingsFormValid} onOk={actions.handleSaveSettings} showCancel={!!state.settingsInStorage} showOk={true} okLabel={'Save'} closeLabel={'Cancel'}>
       <Settings />
     </Modal>
-    <div className="pull-top-right">
+    <div className="pull-top-right margin">
       <Button  data-micromodal-trigger="settings-modal" >Settings</Button>
     </div>
     <section className="hero">
