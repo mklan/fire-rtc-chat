@@ -64492,10 +64492,10 @@ var MainView = function MainView() {
       { oncreate: actions.loadSettings, className: 'main-view' },
       (0, _hyperapp.h)(
         _Modal2.default,
-        { initialOpen: !state.settingsInStorage, config: { onShow: actions.loadSettings }, id: 'settings-modal', title: 'Settings', disableOk: !state.settingsFormValid, onOk: actions.handleSaveSettings, showCancel: !!state.settingsInStorage, showOk: true, okLabel: 'Save', closeLabel: 'Cancel' },
+        { initialOpen: state.isInitiator && !state.settingsInStorage, config: { onShow: actions.loadSettings }, id: 'settings-modal', title: 'Settings', disableOk: !state.settingsFormValid, onOk: actions.handleSaveSettings, showCancel: !!state.settingsInStorage, showOk: true, okLabel: 'Save', closeLabel: 'Cancel' },
         (0, _hyperapp.h)(Settings, null)
       ),
-      (0, _hyperapp.h)(
+      state.isInitiator && (0, _hyperapp.h)(
         'div',
         { className: 'pull-top-right margin' },
         (0, _hyperapp.h)(
@@ -64581,7 +64581,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '38003' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '37137' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

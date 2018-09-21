@@ -81,12 +81,12 @@ const View = (state, actions) => (
 
 const MainView = () => (state, actions) =>  (
   <div oncreate={actions.loadSettings} className="main-view">
-    <Modal initialOpen={!state.settingsInStorage} config={{ onShow: actions.loadSettings }} id={'settings-modal'} title={'Settings'} disableOk={!state.settingsFormValid} onOk={actions.handleSaveSettings} showCancel={!!state.settingsInStorage} showOk={true} okLabel={'Save'} closeLabel={'Cancel'}>
+    <Modal initialOpen={state.isInitiator && !state.settingsInStorage} config={{ onShow: actions.loadSettings }} id={'settings-modal'} title={'Settings'} disableOk={!state.settingsFormValid} onOk={actions.handleSaveSettings} showCancel={!!state.settingsInStorage} showOk={true} okLabel={'Save'} closeLabel={'Cancel'}>
       <Settings />
     </Modal>
-    <div className="pull-top-right margin">
+    { state.isInitiator && <div className="pull-top-right margin">
       <Button  data-micromodal-trigger="settings-modal" >Settings</Button>
-    </div>
+    </div> }
     <section className="hero">
       <div className="hero-body">
         <div className="container">
