@@ -1,10 +1,10 @@
 import { h, app } from 'hyperapp';
-import { Field } from "../../components/FormElement/FormElements";
+import SingleInputForm from "../../components/SingleInputForm/SingleInputForm";
+
 
 import './styles.css';
 
 const state = {
-  input: '',
   messages: []
 };
 
@@ -13,11 +13,9 @@ const actions = {
     if(!state.input) return;
     onSend(state.input);
     actions.addMessage({ user: 'me', msg: state.input });
-    actions.clearInput();
+    return ({ input: '' });
   },
   addMessage: message => state => ({ messages: [message, ...state.messages] }),
-  clearInput: () => state => ({ input: '' }),
-  setInput: e => ({ input: e.target.value }),
 };
 
 const Component = ({ onSend = () => {} }) => (state, actions) =>  (
@@ -28,12 +26,7 @@ const Component = ({ onSend = () => {} }) => (state, actions) =>  (
                                                 key={i}><span className="user">{message.user}:</span> {message.msg}</div>)
       }
     </div>
-      <form onsubmit={(e) => { e.preventDefault(); actions.send(onSend)}}>
-        <div className="bottomBar">
-          <input className="messageInput" value={state.input} onchange={actions.setInput}/>
-          <button type="submit">send</button>
-        </div>
-      </form>
+    <SingleInputForm placeholder="your message..." name="input" onclick={() => { actions.send(onSend)}} value={state.input} onchange={actions.setState}  />
   </div>
 );
 

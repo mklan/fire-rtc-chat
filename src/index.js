@@ -18,6 +18,7 @@ import ClipboardButton from "./containers/ClipboardButton/ClipboardButton";
 import SettingsContainer from './containers/Settings/Settings';
 import ChatContainer from './containers/Chat/Chat';
 import DecryptionFormContainer from './containers/DecryptionForm/DecryptionForm';
+import Loading from "./components/Loading/Loading";
 
 const Settings = SettingsContainer.Component;
 const Chat = ChatContainer.Component;
@@ -74,7 +75,6 @@ const actions = {
 const View = (state, actions) => (
   <div className="view">
     <div className="content">
-      <h1>{ state.loading ? 'LOADING' : '' }</h1>
       { state.connected ? <Chat onSend={fireRTC.send}/> : <MainView /> }
     </div>
   </div>
@@ -86,7 +86,7 @@ const MainView = () => (state, actions) =>  (
       <Settings />
     </Modal>
     { state.isInitiator && <div className="pull-top-right margin">
-      <Button  data-micromodal-trigger="settings-modal" >Settings</Button>
+      <Button data-micromodal-trigger="settings-modal" >Settings</Button>
     </div> }
     <section className="hero">
       <div className="hero-body">
@@ -102,15 +102,20 @@ const MainView = () => (state, actions) =>  (
     </section>
 
     { state.isInitiator ? <div>
-      { !state.link ? <SingleInputForm disabled={!state.partnerNickname} buttonLabel='Create Chat' placeholder="Chat with..." name="partnerNickname" onclick={actions.createChat} value={state.partnerNickname} onchange={actions.setState}  /> : <div>
-        <a href={state.link}>LINK</a>
-        <ClipboardButton className="button" value={state.link} />
-        <QR text={state.link}/>
+      { !state.link ? <SingleInputForm disabled={!state.partnerNickname} buttonLabel='Create Chat' placeholder="Chat with..." name="partnerNickname" onclick={actions.createChat} value={state.partnerNickname} onchange={actions.setState}  /> : <div class="center-hor">
+        {state.loading && <Loading className="margin" /> }
+        <p>share the link together with your passphare with your chat partner and wait until he connects</p>
+        <div className="row center">
+          <a href={state.link}>LINK</a>
+          <ClipboardButton className="button is-link" value={state.link} />
+        </div>
+        <QR className="qr" text={state.link}/>
       </div>
       }
     </div> : <div>
       enter the passphrase to chat with {state.partnerNickname}
       <DecryptionForm buttonLabel={'Enter chat'} encryption={URLparams.get('code')} onDecrypt={actions.initializeFireRTC}/>
+      {state.loading && <Loading /> }
     </div>
       }
   </div>

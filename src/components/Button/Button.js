@@ -1,8 +1,8 @@
 import { h, app } from 'hyperapp';
 import './styles.css';
 
-const Button = (props, children) => (
-  <button className={`custom-button button${props.primary ? ' is-link' : ''}`} {...props}>{children}</button>
+const Button = ({className, ...rest}, children) => (
+  <button {...rest} className={`button${rest.primary ? ' is-link' : ''} custom-button ${className ? className : ''}`} >{children}</button>
 );
 
 export default Button;

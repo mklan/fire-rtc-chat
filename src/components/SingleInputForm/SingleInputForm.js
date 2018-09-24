@@ -4,14 +4,15 @@ import { Input } from "../FormElement/FormElements";
 import Button from '../Button/Button';
 
 const SingleInputForm = ({ disabled, onclick=() => {}, buttonLabel='Send', name, type, value,onchange=()=>{}, placeholder  }) =>  (
-  <div className="columns">
-    <div className="column">
+  <form onsubmit={(e) => {
+    e.preventDefault();
+    onclick();
+  }}>
+  <div className="row">
       <Input placeholder={placeholder} name={name} type={type} value={value} onchange={onchange} />
-    </div>
-    <div className="column">
-      <Button disabled={disabled} onclick={onclick}>{buttonLabel}</Button>
-    </div>
+      <Button primary disabled={disabled} type="submit">{buttonLabel}</Button>
   </div>
+  </form>
 );
 
 export default SingleInputForm;

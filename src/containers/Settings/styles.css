@@ -1,5 +1,6 @@
 .settings {
     width: 500px;
+    max-width: 100vw;
 }
 .settings-field {
     width: 100%;

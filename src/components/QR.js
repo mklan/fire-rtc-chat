@@ -12,8 +12,8 @@ function createQR(el, text) {
     correctLevel : QRCode.CorrectLevel.H
   });
 }
-const QR = ({ text }) => (
-  <div oncreate={(el) => createQR(el, text)} />
+const QR = ({ className, text }) => (
+  <div className={className} oncreate={(el) => createQR(el, text)} />
 );
 
 export default QR;
