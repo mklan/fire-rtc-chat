@@ -2,14 +2,14 @@
 .chat {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100vh;
     background: #fffaf2;
-    overflow: hidden;
 }
 
 .messages {
     flex: 1;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     padding: 1em;
