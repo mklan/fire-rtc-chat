@@ -27,6 +27,13 @@
     box-sizing: border-box;
 }
 
+@media only screen and (max-width: 600px) {
+    .modal__container {
+        width: 95%;
+    }
+}
+
+
 .modal__header {
     display: flex;
     justify-content: space-between;
