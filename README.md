@@ -41,11 +41,11 @@ npm run build
 
 ## TODO
 
-- [ ] nicer CSS / layout
+- [x] nicer CSS / layout
 - [x] hit enter to send message on desktop
 - [ ] instructions on main screen
 - [x] form validation
-- [ ] loading indicator
+- [x] loading indicator
 - [ ] form helpers on wrong validation
 - [x] fire-rtc as a single lib/project on npm
 - [ ] video chat
