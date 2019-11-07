@@ -1,73 +1,82 @@
-import { h, app } from 'hyperapp';
+import { h, app } from "hyperapp";
 import { Field } from "../../components/FormElement/FormElements";
 
-import './styles.css';
+import "./styles.css";
 
 const state = {
   settings: {},
-  settingsErrors: {
-  },
+  settingsErrors: {},
   settingsFormValid: false,
-  settingsInStorage: !!localStorage.settings,
+  settingsInStorage: !!localStorage.settings
 };
 
 const actions = {
   loadSettings: () => (state, actions) => {
-    if(localStorage.settings) {
-      return ({ settings: JSON.parse(localStorage.settings)})
+    if (localStorage.settings) {
+      return { settings: JSON.parse(localStorage.settings) };
     }
   },
-  setSetting: (setting) => (state, actions) => {
+  setSetting: setting => (state, actions) => {
+    const {
+      apiKey,
+      databaseURL,
+      projectId,
+      nickname,
+      password
+    } = state.settings;
 
-    const  { apiKey, databaseURL, projectId, nickname, password } = state.settings;
-
-    return ({ settings: { ...state.settings, ...setting }, settingsFormValid: apiKey && databaseURL && projectId && nickname && password})
+    return {
+      settings: { ...state.settings, ...setting },
+      settingsFormValid:
+        apiKey && databaseURL && projectId && nickname && password
+    };
   },
-  handleSaveSettings: (callback) => ({ settings }, actions) => {
+  handleSaveSettings: callback => ({ settings }, actions) => {
     localStorage.settings = JSON.stringify(settings);
     callback && callback(settings);
-    return ({ settingsInStorage: true });
-  },
+    return { settingsInStorage: true };
+  }
 };
 
 const fields = [
   {
-    label: 'firebase api key',
-    name: 'apiKey'
+    label: "firebase api key",
+    name: "apiKey"
   },
   {
-    label: 'firebase database URL',
-    name: 'databaseURL'
+    label: "firebase database URL",
+    name: "databaseURL"
   },
   {
-    label: 'firebase project Id',
-    name: 'projectId'
+    label: "firebase project Id",
+    name: "projectId"
   },
   {
-    label: 'nickname',
-    name: 'nickname',
+    label: "nickname",
+    name: "nickname"
   },
   {
-    label: 'encryption password',
-    name: 'password',
-    type: 'password'
-  },
-
+    label: "encryption password",
+    name: "password",
+    type: "password"
+  }
 ];
 
-const Component = () => (state, actions) =>  (
+const Component = () => (state, actions) => (
   <div class="settings">
-    {
-      fields.map(field => (
-        <Field
-          error={state.settingsErrors[field.name]}
-          className='settings-field'
-          {...field}
-          value={state.settings[field.name]}
-          onchange={actions.setSetting}
-        />
-      ))
-    }
+    <p>
+      If you don't have a firebase project yet, you can create one{" "}
+      <a href="https://firebase.google.com/">here</a>
+    </p>
+    {fields.map(field => (
+      <Field
+        error={state.settingsErrors[field.name]}
+        className="settings-field"
+        {...field}
+        value={state.settings[field.name]}
+        onchange={actions.setSetting}
+      />
+    ))}
   </div>
 );
 
@@ -75,4 +84,4 @@ export default {
   state,
   actions,
   Component
-}
+};
