@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "A serverless webRTC chat, using firestore as the sdp-broker",
   "scripts": {
-    "prebuild": "rm -rf docs",
-    "start": "parcel src/index.html --out-dir docs",
-    "build": "parcel build src/index.html --out-dir docs --public-url ./",
+    "prebuild": "rm -rf dir",
+    "start": "parcel src/index.html --out-dir dist",
+    "build": "parcel build src/index.html --out-dir dist --public-url ./",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthias Klan <matthias.klan@gmail.com>",
