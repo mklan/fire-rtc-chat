@@ -1,28 +1,28 @@
-import * as firebase from "firebase/app";
-import "firebase/database";
-import "regenerator-runtime/runtime";
-import uuidv4 from "uuid/v4";
+import * as firebase from 'firebase/app';
+import 'firebase/database';
+import 'regenerator-runtime/runtime';
+import uuidv4 from 'uuid/v4';
 
-import { h, app } from "hyperapp";
+import { h, app } from 'hyperapp';
 
-import "bulma/css/bulma.css";
-import "./styles.css";
+import 'bulma/css/bulma.css';
+import './styles.css';
 
-import { encrypt } from "./services/encryption";
-import createFireRTC from "fire-rtc";
+import { encrypt } from './services/encryption';
+import createFireRTC from 'fire-rtc';
 
-import QR from "./components/QR";
-import Error from "./components/Error/Error";
-import Modal from "./containers/Modal/Modal";
-import Button from "./components/Button/Button";
-import SingleInputForm from "./components/SingleInputForm/SingleInputForm";
-import ClipboardButton from "./containers/ClipboardButton/ClipboardButton";
+import QR from './components/QR';
+import Error from './components/Error/Error';
+import Modal from './containers/Modal/Modal';
+import Button from './components/Button/Button';
+import SingleInputForm from './components/SingleInputForm/SingleInputForm';
+import ClipboardButton from './containers/ClipboardButton/ClipboardButton';
 
 //container
-import SettingsContainer from "./containers/Settings/Settings";
-import ChatContainer from "./containers/Chat/Chat";
-import DecryptionFormContainer from "./containers/DecryptionForm/DecryptionForm";
-import Loading from "./components/Loading/Loading";
+import SettingsContainer from './containers/Settings/Settings';
+import ChatContainer from './containers/Chat/Chat';
+import DecryptionFormContainer from './containers/DecryptionForm/DecryptionForm';
+import Loading from './components/Loading/Loading';
 
 const Settings = SettingsContainer.Component;
 const Chat = ChatContainer.Component;
@@ -32,12 +32,12 @@ const URLparams = new URLSearchParams(location.search);
 let fireRTC;
 
 const state = {
-  isInitiator: !URLparams.get("code"),
-  partnerNickname: URLparams.get("nick"),
+  isInitiator: !URLparams.get('code'),
+  partnerNickname: URLparams.get('nick'),
   id: uuidv4(),
   connected: false,
   ...SettingsContainer.state,
-  ...ChatContainer.state
+  ...ChatContainer.state,
 };
 
 const actions = {
@@ -46,35 +46,35 @@ const actions = {
     actions.setState({ loading: true });
 
     try {
-      if (firebase.apps["fireRTCChat"])
-        await firebase.app("fireRTCChat").delete();
-      await firebase.initializeApp(fireBaseConfig, "fireRTCChat");
+      if (firebase.apps['fireRTCChat'])
+        await firebase.app('fireRTCChat').delete();
+      await firebase.initializeApp(fireBaseConfig, 'fireRTCChat');
     } catch (e) {
       actions.setState({
-        error: "Failed to connect to Firebase, please check your settings",
+        error: 'Failed to connect to Firebase, please check your settings',
         loading: false,
-        link: null
+        link: null,
       });
     }
 
     fireRTC = createFireRTC({
       id,
       firebase,
-      firebaseNameSpace: "fireRTCChat",
+      firebaseNameSpace: 'fireRTCChat',
       initiator: state.isInitiator,
       onError: error =>
         actions.setState({
           error:
-            "Failed to connect! check your internet connection and try again",
+            'Failed to connect! check your internet connection and try again',
           loading: false,
-          link: null
+          link: null,
         }),
       onConnect: () => actions.setState({ connected: true, loading: false }),
       onData: msg =>
         actions.addMessage({
-          user: state.partnerNickname || "Bob",
-          msg: msg.toString()
-        })
+          user: state.partnerNickname || 'Bob',
+          msg: msg.toString(),
+        }),
     });
   },
   createChat: () => async (state, actions) => {
@@ -83,23 +83,23 @@ const actions = {
       databaseURL,
       projectId,
       password,
-      nickname
+      nickname,
     } = state.settings;
     const fireRTCconfig = {
       fireBaseConfig: { apiKey, databaseURL, projectId },
-      id: state.id
+      id: state.id,
     };
 
     await actions.initializeFireRTC(fireRTCconfig);
 
     const encryption = encrypt({ ...fireRTCconfig }, password);
     actions.setState({
-      link: `${location.href}?code=${encryption}&nick=${nickname}`
+      link: `${location.href}?code=${encryption}&nick=${nickname}`,
     });
   },
   ...SettingsContainer.actions,
   ...DecryptionFormContainer.actions,
-  ...ChatContainer.actions
+  ...ChatContainer.actions,
 };
 
 const View = (state, actions) => (
@@ -110,7 +110,7 @@ const View = (state, actions) => (
       ) : (
         <MainView state={state} />
       )}
-    </div>{" "}
+    </div>{' '}
   </div>
 );
 
@@ -119,14 +119,14 @@ const MainView = () => (state, actions) => (
     <Modal
       initialOpen={state.isInitiator && !state.settingsInStorage}
       config={{ onShow: actions.loadSettings }}
-      id={"settings-modal"}
-      title={"Settings"}
+      id={'settings-modal'}
+      title={'Settings'}
       disableOk={!state.settingsFormValid}
       onOk={actions.handleSaveSettings}
       showCancel={!!state.settingsInStorage}
       showOk={true}
-      okLabel={"Save"}
-      closeLabel={"Cancel"}
+      okLabel={'Save'}
+      closeLabel={'Cancel'}
     >
       <Settings />
     </Modal>
@@ -184,10 +184,10 @@ const MainView = () => (state, actions) => (
       <div>
         enter the passphrase to chat with {state.partnerNickname}
         <DecryptionForm
-          buttonLabel={"Enter chat"}
-          encryption={URLparams.get("code")}
+          buttonLabel={'Enter chat'}
+          encryption={URLparams.get('code')}
           onDecrypt={actions.initializeFireRTC}
-          onError={() => actions.setState({ error: "Error decrypting" })}
+          onError={() => actions.setState({ error: 'Error decrypting' })}
         />
         {state.loading && <Loading />}
       </div>
@@ -195,4 +195,4 @@ const MainView = () => (state, actions) => (
   </div>
 );
 
-app(state, actions, View, document.getElementById("app"));
+app(state, actions, View, document.getElementById('app'));

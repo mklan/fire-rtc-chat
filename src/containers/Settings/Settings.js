@@ -1,13 +1,13 @@
-import { h, app } from "hyperapp";
-import { Field } from "../../components/FormElement/FormElements";
+import { h, app } from 'hyperapp';
+import { Field } from '../../components/FormElement/FormElements';
 
-import "./styles.css";
+import './styles.css';
 
 const state = {
   settings: {},
   settingsErrors: {},
   settingsFormValid: false,
-  settingsInStorage: !!localStorage.settings
+  settingsInStorage: !!localStorage.settings,
 };
 
 const actions = {
@@ -22,50 +22,50 @@ const actions = {
       databaseURL,
       projectId,
       nickname,
-      password
+      password,
     } = state.settings;
 
     return {
       settings: { ...state.settings, ...setting },
       settingsFormValid:
-        apiKey && databaseURL && projectId && nickname && password
+        apiKey && databaseURL && projectId && nickname && password,
     };
   },
   handleSaveSettings: callback => ({ settings }, actions) => {
     localStorage.settings = JSON.stringify(settings);
     callback && callback(settings);
     return { settingsInStorage: true };
-  }
+  },
 };
 
 const fields = [
   {
-    label: "firebase api key",
-    name: "apiKey"
+    label: 'firebase api key',
+    name: 'apiKey',
   },
   {
-    label: "firebase database URL",
-    name: "databaseURL"
+    label: 'firebase database URL',
+    name: 'databaseURL',
   },
   {
-    label: "firebase project Id",
-    name: "projectId"
+    label: 'firebase project Id',
+    name: 'projectId',
   },
   {
-    label: "nickname",
-    name: "nickname"
+    label: 'nickname',
+    name: 'nickname',
   },
   {
-    label: "encryption password",
-    name: "password",
-    type: "password"
-  }
+    label: 'encryption password',
+    name: 'password',
+    type: 'password',
+  },
 ];
 
 const Component = () => (state, actions) => (
   <div class="settings">
     <p>
-      If you don't have a firebase project yet, you can create one{" "}
+      If you don't have a firebase project yet, you can create one{' '}
       <a href="https://firebase.google.com/">here</a>
     </p>
     {fields.map(field => (
@@ -83,5 +83,5 @@ const Component = () => (state, actions) => (
 export default {
   state,
   actions,
-  Component
+  Component,
 };
