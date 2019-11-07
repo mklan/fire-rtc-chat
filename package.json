@@ -3,37 +3,33 @@
   "version": "0.1.0",
   "description": "A serverless webRTC chat, using firestore as the sdp-broker",
   "scripts": {
-    "prebuild": "rm -rf dir",
+    "prebuild": "rm -rf dist",
     "start": "parcel src/index.html --out-dir dist",
-    "build": "parcel build src/index.html --out-dir dist --public-url ./",
-    "deploy": "yarn build && gh-pages -d dist",
+    "build": "parcel build src/index.html --out-dir dist --public-url ./ --no-source-maps",
+    "deploy": "yarn build && rm dist/report.html && gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Matthias Klan <matthias.klan@gmail.com>",
   "license": "GPL-3.0",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-runtime": "^6.26.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "gh-pages": "^2.1.1",
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-bundle-visualiser": "^1.2.0"
   },
   "dependencies": {
-    "bulma": "^0.7.1",
-    "clipboard": "^2.0.1",
+    "bulma": "^0.8.0",
+    "clipboard": "^2.0.4",
     "crypto-js": "^3.1.9-1",
-    "fire-rtc": "^1.0.2",
+    "fire-rtc": "^1.0.3",
     "firebase": "^7.2.3",
-    "hyperapp": "^1.2.8",
-    "micromodal": "^0.3.2",
+    "hyperapp": "1",
+    "micromodal": "^0.4.2",
     "qrcodejs2": "0.0.2",
-    "simple-peer": "^9.1.2",
-    "uuid": "^3.3.2"
+    "regenerator-runtime": "^0.13.3",
+    "simple-peer": "^9.6.1",
+    "uuid": "^3.3.3"
   }
 }
