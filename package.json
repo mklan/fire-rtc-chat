@@ -1,15 +1,15 @@
 {
   "name": "fire-rtc-chat",
   "version": "0.1.0",
-  "description": "A serverless webRTC chat, using firebase's database as the sdp-broker",
+  "description": "A serverless webRTC chat, using firestore as the sdp-broker",
   "scripts": {
     "prebuild": "rm -rf docs",
     "start": "parcel src/index.html --out-dir docs",
     "build": "parcel build src/index.html --out-dir docs --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Matthias Klan <matthias.klan@gmail.com>",
+  "license": "GPL-3.0",
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
