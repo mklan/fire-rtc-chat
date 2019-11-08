@@ -9,12 +9,13 @@ serverless webRTC chat using firebase's realtime database as signaling broker
 
 ## Usage
 
-1. Create a new firebase project and enter the corresponding api key, database url
-   and project id together with your nickname and an encryption passphrase.
-2. Enter a chat partner's nickname and create a chat.
-3. Share somehow the generated chat-link together with your passphrase with your chat partner.
-4. Do not close the tab and wait until your partner enters the passphrase.
-5. Chat via an encrypted p2p communication channel.
+1. Create or open a firebase project and copy your api key, database url
+   and project id into the settings dialog.
+2. Define a nickname and a passphrase inside the settings dialog.
+3. Enter a chat partner's nickname and create a chat.
+4. Share somehow the generated chat-link and your passphrase with your chat partner.
+5. Do not close the tab and wait until your partner enters the passphrase.
+6. Start chatting via an encrypted p2p communication channel.
 
 ## Functionality
 
