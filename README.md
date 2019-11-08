@@ -24,7 +24,7 @@ serverless webRTC chat using firebase's realtime database as signaling broker
 - Both of you get notified of the others sdp config via a firebase event.
 - After both parties have the other's sdp config, the webRTC connection can be established.
 
-> **Warning!** After the decryption the other party is able to retrieve your firebase configuration. So keep only chatting to people you trust or non-techies.
+> **Warning!** After the decryption, the other party could be potentialy able to retrieve your firebase api key via dev_tools . So keep only chatting to people you trust or non-techies.
 
 ## Develop
 
